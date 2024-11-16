@@ -1,0 +1,107 @@
+@use '../abstracts';
+
+.menu-column {
+    + .menu-column {
+        margin-top: 30px;
+    }
+
+    display: flex;
+    gap: 14px;
+
+    &__icon {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        position: relative;
+
+        @include abstracts.breakpoint(xl) {
+            display: none;
+        }
+    }
+
+    &__content {
+        flex: 1;
+    }
+
+    &__icon-1 {
+        object-fit: contain;
+        width: 30px;
+        height: 30px;
+    }
+    &__icon-2 {
+        object-fit: contain;
+        width: 24px;
+        height: 24px;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        filter: var(--menu-column-icon-color);
+    }
+
+    &__heading {
+        margin-top: 4px;
+        font-size: 1.6rem;
+        font-weight: 500;
+        line-height: 150%; /* 150% */
+    }
+
+    &__list {
+        margin-top: 19px;
+    }
+
+    
+    &__link {
+        display: block;
+        padding: 7px 0;
+        font-size: 1.4rem;
+        font-weight: 400;
+        line-height: 142.857%; /* 142.857% */
+    }
+
+    &__item:hover > &__link{
+        color: #0071DC;
+        font-weight: 500;
+        font-size: 1.4rem;
+    }
+
+    &__item:hover .sub-menu{
+        display: grid;
+    }
+}
+
+.dropdown {
+    // display: none;
+    position: absolute;
+    width: min(1240px, 100%);
+    left: 0px;
+    padding-top: 54px;
+
+    &__inner {
+        position: relative;
+
+        height: min(582px, 100vh - 134px);
+        padding: 30px;
+        border-radius: 20px;
+        background: var(--dropdown-bg-color);
+        box-shadow: 0px 40px 90px 20px var(--dropdown-shadow-color);
+
+        &::before {
+            content: url("../icon/dropdown-arrown.svg");
+            position: absolute;
+            top: -13px;
+            left: var(--arrow-left-pos);
+            translate: -50%;
+            filter: var(--dropdown-arrow-color);
+        }
+    }
+}
+
+.sub-menu {
+    // display: grid;
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    position: absolute;
+    inset: 0 0 0 292px;
+    padding-left: 30px;
+    overflow-y: auto;
+}
